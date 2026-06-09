@@ -7,7 +7,6 @@ test.describe("Navigation", () => {
   });
 
   test("nav links scroll to correct sections", async ({ page }) => {
-    await page.goto("/");
     for (const [href, id] of [
       ["#islands", "islands"],
       ["#experiences", "experiences"],
@@ -15,7 +14,13 @@ test.describe("Navigation", () => {
       ["#stories", "stories"],
     ]) {
       await page.goto("/");
-      await page.click(`nav a[href="${href}"]`);
+      const link = page.locator(`.nav__links a[href="${href}"]`);
+      // On mobile the nav is hidden behind a toggle
+      if (!(await link.isVisible())) {
+        await page.locator("#nav-toggle").click();
+        await page.waitForTimeout(200);
+      }
+      await link.click();
       await expect(page.locator(`#${id}`)).toBeInViewport({ ratio: 0.05 });
     }
   });

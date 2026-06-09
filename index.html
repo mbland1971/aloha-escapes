@@ -21,11 +21,12 @@
         --surface: oklch(0.13 0.018 225);
         --surface-2: oklch(0.17 0.021 225);
         --primary: oklch(0.63 0.17 18);
-        --primary-d: oklch(0.52 0.16 18);
+        --primary-btn: oklch(0.5 0.17 18);
+        --primary-d: oklch(0.44 0.16 18);
         --ocean: oklch(0.52 0.15 222);
         --ink: oklch(0.94 0.008 72);
         --ink-2: oklch(0.76 0.01 72);
-        --muted: oklch(0.54 0.012 225);
+        --muted: oklch(0.6 0.012 225);
         --gold: oklch(0.78 0.115 70);
         --border: oklch(0.2 0.018 225);
 
@@ -129,7 +130,7 @@
         transform: scale(0.97) translateY(0);
       }
       .btn-primary {
-        background: var(--primary);
+        background: var(--primary-btn);
         color: #fff;
       }
       .btn-primary:hover {
@@ -204,7 +205,7 @@
         align-items: center;
         gap: 0.4rem;
         padding: 0.65rem 1.4rem;
-        background: var(--primary);
+        background: var(--primary-btn);
         color: #fff;
         font-size: var(--tx-xs);
         font-weight: 500;
@@ -1875,7 +1876,12 @@
 
     <!-- AMBIENT AUDIO PLAYER -->
     <!-- Replace data-src with your Suno-generated audio URL after generation -->
-    <audio id="ambient-audio" loop preload="none" data-src="YOUR_SUNO_AUDIO_URL_HERE"></audio>
+    <audio
+      id="ambient-audio"
+      loop
+      preload="none"
+      data-src="https://archive.org/download/hawaiian-music-3/Quiet%20Lagoon.mp3"
+    ></audio>
 
     <div class="aplayer" id="aplayer" role="region" aria-label="Ambient music player">
       <div class="aplayer__track">
@@ -2056,7 +2062,7 @@
         const audioSrc = audio.dataset.src;
         let srcLoaded = false;
         function ensureSrc() {
-          if (!srcLoaded && audioSrc && audioSrc !== "YOUR_SUNO_AUDIO_URL_HERE") {
+          if (!srcLoaded && audioSrc) {
             audio.src = audioSrc;
             srcLoaded = true;
           }

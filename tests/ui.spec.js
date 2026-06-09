@@ -32,7 +32,7 @@ test.describe("UI Components", () => {
     await page.goto("/");
     const nav = page.locator("#nav");
     await expect(nav).not.toHaveClass(/scrolled/);
-    await page.mouse.wheel(0, 200);
+    await page.evaluate(() => window.scrollBy(0, 200));
     await expect(nav).toHaveClass(/scrolled/, { timeout: 1000 });
   });
 
