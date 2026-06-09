@@ -1,0 +1,25 @@
+{
+  "name": "aloha-escapes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint:html": "htmlhint index.html",
+    "lint:js": "eslint index.html",
+    "lint": "npm run lint:html && npm run lint:js",
+    "format": "prettier --write index.html",
+    "format:check": "prettier --check index.html",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "serve": "npx serve -l 3456 ."
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.52.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-html": "^8.1.3",
+    "globals": "^16.1.0",
+    "htmlhint": "^1.6.3",
+    "prettier": "^3.5.3"
+  }
+}
