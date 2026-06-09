@@ -8,6 +8,68 @@
       name="description"
       content="Boutique luxury travel agency specializing in Hawaiian vacations. Custom itineraries, private guides, and access to the parts of Hawaii most visitors never find."
     />
+
+    <!-- SEO & Social -->
+    <link rel="canonical" href="https://aloha-escapes.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aloha-escapes.com/" />
+    <meta property="og:title" content="Aloha Escapes — Luxury Hawaiian Vacations" />
+    <meta
+      property="og:description"
+      content="Boutique luxury travel agency specializing in Hawaiian vacations. Custom itineraries, private guides, and access to the parts of Hawaii most visitors never find."
+    />
+    <meta
+      property="og:image"
+      content="https://d8j0ntlcm91z4.cloudfront.net/user_3Eh4RU5llS5ZTEvg40eiOF3DyWN/hf_20260606_135835_d2966cf4-bf38-49cd-996a-106445cf2764.png"
+    />
+    <meta property="og:site_name" content="Aloha Escapes" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aloha Escapes — Luxury Hawaiian Vacations" />
+    <meta
+      name="twitter:description"
+      content="Boutique luxury travel agency specializing in Hawaiian vacations. Custom itineraries, private guides, and access to the parts of Hawaii most visitors never find."
+    />
+    <meta
+      name="twitter:image"
+      content="https://d8j0ntlcm91z4.cloudfront.net/user_3Eh4RU5llS5ZTEvg40eiOF3DyWN/hf_20260606_135835_d2966cf4-bf38-49cd-996a-106445cf2764.png"
+    />
+    <meta name="theme-color" content="#0f1b22" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; media-src https://*.archive.org; connect-src 'self' https://formspree.io https://plausible.io; form-action https://formspree.io 'self'; base-uri 'self'; object-src 'none';"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "Aloha Escapes",
+        "description": "Boutique luxury travel agency specializing in Hawaiian vacations.",
+        "url": "https://aloha-escapes.com",
+        "telephone": "+18085550190",
+        "email": "hello@aloha-escapes.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1050 Ala Moana Blvd, Suite 4000",
+          "addressLocality": "Honolulu",
+          "addressRegion": "HI",
+          "postalCode": "96814",
+          "addressCountry": "US"
+        },
+        "areaServed": { "@type": "Place", "name": "Hawaii" },
+        "priceRange": "$$$"
+      }
+    </script>
+
+    <!-- Analytics · requires domain registration at plausible.io -->
+    <script defer data-domain="aloha-escapes.com" src="https://plausible.io/js/script.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -794,6 +856,50 @@
         font-size: var(--tx-xs);
         letter-spacing: 0.1em;
         text-transform: uppercase;
+      }
+
+      /* ── FORM STATES ────────────────────────────────────────────────── */
+      .cta-band__consent {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+        font-size: var(--tx-xs);
+        color: var(--ink-2);
+        max-width: 580px;
+        line-height: 1.5;
+        cursor: pointer;
+      }
+      .cta-band__consent input[type="checkbox"] {
+        margin-top: 0.15rem;
+        flex-shrink: 0;
+        accent-color: var(--primary);
+      }
+      .cta-band__consent a {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+      .cta-band__status {
+        margin-top: 1rem;
+        padding: 0.85rem 1.2rem;
+        border-radius: 3px;
+        font-size: var(--tx-sm);
+        font-weight: 400;
+        max-width: 580px;
+      }
+      .cta-band__status--success {
+        background: oklch(0.22 0.07 145 / 0.25);
+        border: 1px solid oklch(0.55 0.14 145);
+        color: oklch(0.82 0.1 145);
+      }
+      .cta-band__status--error {
+        background: oklch(0.2 0.07 18 / 0.25);
+        border: 1px solid oklch(0.52 0.17 18);
+        color: oklch(0.82 0.1 18);
+      }
+      .cta-band__status a {
+        color: inherit;
+        text-decoration: underline;
       }
 
       /* ── CTA ─────────────────────────────────────────────────────────── */
@@ -1791,10 +1897,19 @@
           </p>
           <form
             class="cta-band__form"
-            action="#"
+            action="https://formspree.io/f/YOUR_FORM_ID"
             method="post"
             aria-label="Start planning your Hawaiian trip"
+            id="enquiry-form"
           >
+            <!-- Honeypot — leave blank -->
+            <input
+              type="text"
+              name="_gotcha"
+              style="display: none"
+              tabindex="-1"
+              autocomplete="off"
+            />
             <input
               class="cta-band__input"
               type="email"
@@ -1804,7 +1919,7 @@
               aria-label="Your email address"
               required
             />
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id="enquiry-submit">
               Start the Conversation
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
                 <path
@@ -1817,6 +1932,18 @@
               </svg>
             </button>
           </form>
+          <label class="cta-band__consent">
+            <input type="checkbox" required form="enquiry-form" />
+            I consent to Aloha Escapes contacting me about my trip enquiry. See our
+            <a href="/privacy.html">Privacy Policy</a>.
+          </label>
+          <div
+            id="form-status"
+            class="cta-band__status"
+            hidden
+            role="status"
+            aria-live="polite"
+          ></div>
           <p class="cta-band__note">
             No sales pitch — just a conversation with someone who knows the islands.
           </p>
@@ -1859,16 +1986,17 @@
             <ul class="footer__links" role="list">
               <li><a href="#how">How It Works</a></li>
               <li><a href="#stories">Guest Stories</a></li>
-              <li><a href="#plan">Contact</a></li>
+              <li><a href="tel:+18085550190">(808) 555-0190</a></li>
+              <li><a href="mailto:hello@aloha-escapes.com">hello@aloha-escapes.com</a></li>
             </ul>
           </nav>
         </div>
         <div class="footer__bottom">
           <p class="footer__copy">&copy; 2026 Aloha Escapes. All rights reserved.</p>
           <ul class="footer__legal" role="list">
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Accessibility</a></li>
+            <li><a href="/privacy.html">Privacy</a></li>
+            <li><a href="/terms.html">Terms</a></li>
+            <li><a href="/accessibility.html">Accessibility</a></li>
           </ul>
         </div>
       </div>
@@ -1902,8 +2030,8 @@
           </svg>
         </div>
         <div class="aplayer__meta">
-          <span class="aplayer__title">Golden Hour, Na Pali</span>
-          <span class="aplayer__label">Ambient Hawaiian</span>
+          <span class="aplayer__title">Quiet Lagoon</span>
+          <span class="aplayer__label">Hawaiian Ambient · CC BY-NC-ND</span>
         </div>
       </div>
 
@@ -2019,33 +2147,97 @@
         reveals.forEach((el) => el.classList.add("visible"));
       }
 
-      // Mobile nav toggle
+      // Mobile nav toggle — with focus trap, Escape, and aria-hidden background
       const toggle = document.getElementById("nav-toggle");
       const links = document.querySelector(".nav__links");
       const cta = document.querySelector(".nav__cta");
+      const mainEl = document.querySelector("main");
+      const footerEl = document.querySelector("footer");
       let open = false;
-      toggle?.addEventListener("click", () => {
-        open = !open;
-        toggle.setAttribute("aria-expanded", open);
-        if (open) {
-          links.style.cssText =
-            "display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);align-items:center;justify-content:center;gap:2rem;z-index:200";
-          cta.style.display = "none";
-        } else {
-          links.removeAttribute("style");
-          cta.removeAttribute("style");
+
+      function navFocusable() {
+        return [...links.querySelectorAll("a[href], button:not([disabled])")];
+      }
+      function trapFocus(e) {
+        if (e.key !== "Tab") return;
+        const focusable = navFocusable();
+        const first = focusable[0],
+          last = focusable[focusable.length - 1];
+        if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
         }
-      });
+      }
+      function openNav() {
+        open = true;
+        toggle.setAttribute("aria-expanded", "true");
+        links.style.cssText =
+          "display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);align-items:center;justify-content:center;gap:2rem;z-index:200";
+        cta.style.display = "none";
+        mainEl?.setAttribute("aria-hidden", "true");
+        footerEl?.setAttribute("aria-hidden", "true");
+        navFocusable()[0]?.focus();
+        document.addEventListener("keydown", trapFocus);
+        document.addEventListener("keydown", escClose);
+      }
+      function closeNav() {
+        open = false;
+        toggle.setAttribute("aria-expanded", "false");
+        links.removeAttribute("style");
+        cta.removeAttribute("style");
+        mainEl?.removeAttribute("aria-hidden");
+        footerEl?.removeAttribute("aria-hidden");
+        document.removeEventListener("keydown", trapFocus);
+        document.removeEventListener("keydown", escClose);
+        toggle.focus();
+      }
+      function escClose(e) {
+        if (e.key === "Escape") closeNav();
+      }
+      toggle?.addEventListener("click", () => (open ? closeNav() : openNav()));
       links?.querySelectorAll("a").forEach((a) =>
         a.addEventListener("click", () => {
-          if (open) {
-            open = false;
-            toggle.setAttribute("aria-expanded", false);
-            links.removeAttribute("style");
-            cta.removeAttribute("style");
-          }
+          if (open) closeNav();
         })
       );
+
+      // Enquiry form — AJAX submit to Formspree
+      (function () {
+        const form = document.getElementById("enquiry-form");
+        const statusEl = document.getElementById("form-status");
+        const submitBtn = document.getElementById("enquiry-submit");
+        if (!form || !statusEl) return;
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const savedLabel = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending…";
+          statusEl.hidden = true;
+          statusEl.className = "cta-band__status";
+          try {
+            const res = await fetch(form.action, {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: new FormData(form),
+            });
+            if (res.ok) {
+              form.reset();
+              statusEl.innerHTML =
+                "We received your enquiry — expect a reply within one business day.";
+              statusEl.className = "cta-band__status cta-band__status--success";
+            } else {
+              throw new Error();
+            }
+          } catch {
+            statusEl.innerHTML =
+              'Something went wrong. Email us directly at <a href="mailto:hello@aloha-escapes.com">hello@aloha-escapes.com</a>.';
+            statusEl.className = "cta-band__status cta-band__status--error";
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = savedLabel;
+          }
+          statusEl.hidden = false;
+        });
+      })();
 
       // Ambient audio player
       (function () {
