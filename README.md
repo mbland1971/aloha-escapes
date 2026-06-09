@@ -1,6 +1,6 @@
 # Aloha Escapes
 
-Aloha Escapes is a boutique luxury Hawaiian travel agency website. This repo is a single-page static website with all HTML, CSS, and JavaScript contained in `index.html`.
+Aloha Escapes is a boutique luxury Hawaiian travel agency website. This repo is a static site built from a main landing page in `index.html` with supplemental detail pages under `pages/`.
 
 ## Project overview
 
@@ -12,7 +12,7 @@ Aloha Escapes is a boutique luxury Hawaiian travel agency website. This repo is 
 ## Repo structure
 
 - `index.html` — main website file containing HTML, CSS, and JavaScript.
-- `accessibility.html`, `diving.html`, `privacy.html`, `terms.html` — auxiliary static pages.
+- `pages/accessibility.html`, `pages/diving.html`, `pages/privacy.html`, `pages/terms.html` — auxiliary static pages.
 - `PLAYWRIGHT` tests in `tests/`:
   - `accessibility.spec.js`
   - `navigation.spec.js`
@@ -44,7 +44,7 @@ http://localhost:3456
 ## Scripts
 
 - `npm run serve` — start a local static server.
-- `npm run lint` — run HTMLHint and ESLint against `index.html`.
+- `npm run lint` — run HTMLHint and ESLint against `index.html` and `pages/*.html`.
 - `npm run lint:html` — run HTMLHint.
 - `npm run lint:js` — run ESLint.
 - `npm run format` — format `index.html` with Prettier.

@@ -7,19 +7,43 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aloha-escapes.com/privacy.html</loc>
+    <loc>https://aloha-escapes.com/pages/diving.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aloha-escapes.com/pages/molokini.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aloha-escapes.com/pages/turtle-canyon.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aloha-escapes.com/pages/lanai-cathedrals.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aloha-escapes.com/pages/privacy.html</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://aloha-escapes.com/terms.html</loc>
+    <loc>https://aloha-escapes.com/pages/terms.html</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://aloha-escapes.com/accessibility.html</loc>
+    <loc>https://aloha-escapes.com/pages/accessibility.html</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

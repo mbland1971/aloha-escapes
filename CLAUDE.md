@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Aloha Escapes is a boutique luxury Hawaiian travel agency. This repo is a single-page static website — one `index.html` file containing all HTML, CSS, and JavaScript inline. There is no build step, no bundler, no framework, and no package.json.
+Aloha Escapes is a boutique luxury Hawaiian travel agency. This repo is a static website built around a main landing page in `index.html` with supplemental detail pages in `pages/*.html`. There is no build step, no bundler, and no framework.
 
 ## Running Locally
 
