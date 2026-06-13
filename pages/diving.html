@@ -113,6 +113,15 @@
         --wrap: min(1340px, 100% - 3rem);
       }
 
+      /* ── VIEW TRANSITIONS ───────────────────────────────────────────── */
+      @view-transition {
+        navigation: auto;
+      }
+      ::view-transition-group(*) {
+        animation-duration: 0.5s;
+        animation-timing-function: var(--ease-expo);
+      }
+
       /* ── RESET ──────────────────────────────────────────────────────── */
       *,
       *::before,
@@ -133,6 +142,11 @@
         font-weight: 300;
         line-height: 1.65;
         overflow-x: hidden;
+        transition: padding-bottom 0.4s var(--ease-expo);
+      }
+      /* Reserve space so the fixed audio player never covers footer content */
+      body:has(.aplayer.visible) {
+        padding-bottom: 4.5rem;
       }
       img {
         display: block;
@@ -148,6 +162,13 @@
         cursor: pointer;
         border: none;
         background: none;
+      }
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 2px;
       }
       h1,
       h2,
@@ -221,6 +242,18 @@
           padding 0.4s var(--ease-expo),
           backdrop-filter 0.4s;
       }
+      .nav::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 7rem;
+        background: linear-gradient(to bottom, oklch(0.07 0.02 225 / 0.55), transparent);
+        pointer-events: none;
+        transition: opacity 0.4s var(--ease-expo);
+      }
+      .nav.scrolled::before {
+        opacity: 0;
+      }
       .nav.scrolled {
         background: oklch(0.09 0.015 225 / 0.9);
         backdrop-filter: blur(20px);
@@ -283,21 +316,6 @@
         background: var(--primary-d);
         transform: translateY(-1px);
         box-shadow: 0 8px 20px oklch(0.63 0.17 18 / 0.35);
-      }
-      .nav__toggle {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        padding: 0.5rem;
-      }
-      .nav__toggle span {
-        display: block;
-        width: 22px;
-        height: 1.5px;
-        background: var(--ink);
-        transition:
-          transform 0.3s,
-          opacity 0.3s;
       }
 
       /* ── HERO ───────────────────────────────────────────────────────── */
@@ -578,7 +596,6 @@
         box-shadow: 0 16px 40px oklch(0 0 0 / 0.4);
       }
       .scard__cta {
-        margin-top: auto;
         display: inline-flex;
         align-items: center;
         font-size: var(--tx-xs);
@@ -592,6 +609,16 @@
         position: relative;
         aspect-ratio: 4 / 3;
         overflow: hidden;
+      }
+      /* Shared photo continues into the dive site's detail page */
+      .scard--molokini .scard__img-wrap img {
+        view-transition-name: vt-molokini;
+      }
+      .scard--turtle .scard__img-wrap img {
+        view-transition-name: vt-turtle;
+      }
+      .scard--cathedrals .scard__img-wrap img {
+        view-transition-name: vt-cathedrals;
       }
       .scard__gradient {
         position: absolute;
@@ -1109,6 +1136,11 @@
         .aplayer__icon.playing svg {
           animation: none;
         }
+        ::view-transition-group(*),
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+          animation: none !important;
+        }
       }
 
       /* ── RESPONSIVE ──────────────────────────────────────────────────── */
@@ -1136,12 +1168,8 @@
         :root {
           --wrap: min(1340px, 100% - 1.5rem);
         }
-        .nav__links,
-        .nav__cta {
+        .nav__links {
           display: none;
-        }
-        .nav__toggle {
-          display: flex;
         }
         .hero__actions {
           flex-direction: column;
@@ -1222,14 +1250,6 @@
               />
             </svg>
           </a>
-          <button
-            class="nav__toggle"
-            aria-label="Toggle navigation"
-            aria-expanded="false"
-            id="nav-toggle"
-          >
-            <span></span><span></span><span></span>
-          </button>
         </div>
       </nav>
     </header>

@@ -1,3 +1,4 @@
+
 # Aloha Escapes
 
 Aloha Escapes is a boutique luxury Hawaiian travel agency website. This repo is a static site built from a main landing page in `index.html` with supplemental detail pages under `pages/`.

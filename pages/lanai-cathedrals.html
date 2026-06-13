@@ -108,6 +108,15 @@
         --wrap: min(1340px, 100% - 3rem);
       }
 
+      /* ── VIEW TRANSITIONS ───────────────────────────────────────────── */
+      @view-transition {
+        navigation: auto;
+      }
+      ::view-transition-group(*) {
+        animation-duration: 0.5s;
+        animation-timing-function: var(--ease-expo);
+      }
+
       *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
@@ -147,6 +156,13 @@
         background: none;
       }
 
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
       h1, h2, h3, h4 {
         font-family: var(--font-d);
         font-weight: 400;
@@ -172,6 +188,20 @@
         z-index: var(--z-sticky);
         padding: 1.5rem 0;
         transition: background 0.4s var(--ease-expo), padding 0.4s var(--ease-expo), backdrop-filter 0.4s;
+      }
+
+      .nav::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 7rem;
+        background: linear-gradient(to bottom, oklch(0.07 0.02 225 / 0.55), transparent);
+        pointer-events: none;
+        transition: opacity 0.4s var(--ease-expo);
+      }
+
+      .nav.scrolled::before {
+        opacity: 0;
       }
 
       .nav.scrolled {
@@ -260,6 +290,7 @@
         background-size: cover;
         background-position: center 45%;
         animation: kenBurns 18s ease-in-out forwards;
+        view-transition-name: vt-cathedrals;
       }
 
       @keyframes kenBurns {
@@ -497,6 +528,14 @@
 
         .hero__content {
           margin-bottom: 2rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-group(*),
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+          animation: none !important;
         }
       }
     </style>
