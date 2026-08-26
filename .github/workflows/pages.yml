@@ -24,15 +24,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
+      # Stage only the public site. Uploading the repo root would publish
+      # package.json / package-lock.json (exact dependency versions), the CI
+      # workflows, the Playwright suite and internal docs at predictable URLs.
+      - name: Stage static site
+        run: |
+          mkdir -p _site
+          cp index.html 404.html favicon.svg robots.txt sitemap.xml _site/
+          cp -R pages _site/pages
+          echo "Staged:" && find _site -type f | sort
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Only ship the static files — exclude dev tooling
-          path: "."
+          path: "_site"
 
       - name: Deploy to GitHub Pages
         id: deployment

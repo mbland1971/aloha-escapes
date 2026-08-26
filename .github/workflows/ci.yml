@@ -6,12 +6,20 @@ on:
   pull_request:
     branches: [main]
 
+# Lint and tests never write to the repo; the default token scope does.
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # npm ci and the browsers run third-party code — don't leave the
+          # workflow token sitting in .git/config for them.
+          persist-credentials: false
 
       - uses: actions/setup-node@v6
         with:
@@ -35,6 +43,10 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@v4
+        with:
+          # npm ci and the browsers run third-party code — don't leave the
+          # workflow token sitting in .git/config for them.
+          persist-credentials: false
 
       - uses: actions/setup-node@v6
         with:

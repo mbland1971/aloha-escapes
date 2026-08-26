@@ -4,12 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy — Aloha Escapes</title>
-    <meta name="description" content="How Aloha Escapes collects, uses, and protects your personal information." />
+    <meta
+      name="description"
+      content="How Aloha Escapes collects, uses, and protects your personal information."
+    />
     <link rel="canonical" href="https://aloha-escapes.com/pages/privacy.html" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Security · X-Content-Type-Options, X-Frame-Options, Permissions-Policy and
+         CSP's frame-ancestors only take effect as HTTP response headers, which a
+         static host cannot set from markup. GitHub Pages already sends
+         `X-Content-Type-Options: nosniff`; see README "Security headers" for the
+         rest. Framing is blocked by the guard below in the meantime. -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none';"
+    />
+    <script>
+      /* Clickjacking guard — stands in for the frame-ancestors / X-Frame-Options
+         headers this host cannot send. Refuse to render inside any frame. */
+      if (window.self !== window.top) {
+        document.documentElement.style.display = "none";
+        try {
+          window.top.location = window.self.location.href;
+        } catch {
+          /* Top-level navigation blocked by the framing page — stay hidden. */
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloock&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --bg: oklch(0.09 0.015 225);
@@ -17,15 +46,23 @@
         --primary: oklch(0.63 0.17 18);
         --ink: oklch(0.94 0.008 72);
         --ink-2: oklch(0.76 0.01 72);
-        --muted: oklch(0.60 0.012 225);
+        --muted: oklch(0.6 0.012 225);
         --gold: oklch(0.78 0.115 70);
-        --border: oklch(0.20 0.018 225);
+        --border: oklch(0.2 0.018 225);
         --font-d: "Gloock", Georgia, serif;
         --font-b: "Jost", system-ui, sans-serif;
         --wrap: min(780px, 100% - 3rem);
       }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: var(--font-b);
         background: var(--bg);
@@ -34,9 +71,18 @@
         font-weight: 300;
         line-height: 1.72;
       }
-      a { color: var(--primary); text-decoration: underline; }
-      a:hover { color: var(--gold); }
-      .nav-mini { padding: 1.5rem 0; width: var(--wrap); margin-inline: auto; }
+      a {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+      a:hover {
+        color: var(--gold);
+      }
+      .nav-mini {
+        padding: 1.5rem 0;
+        width: var(--wrap);
+        margin-inline: auto;
+      }
       .nav-mini a {
         font-family: var(--font-d);
         font-size: clamp(1.1rem, 1.8vw, 1.35rem);
@@ -44,7 +90,9 @@
         text-decoration: none;
         letter-spacing: 0.01em;
       }
-      .nav-mini span { color: var(--primary); }
+      .nav-mini span {
+        color: var(--primary);
+      }
       .nav-back {
         font-family: var(--font-b);
         font-size: clamp(0.72rem, 1vw, 0.82rem);
@@ -57,13 +105,17 @@
         gap: 0.4rem;
         margin-left: 1.5rem;
       }
-      .nav-back:hover { color: var(--ink); }
+      .nav-back:hover {
+        color: var(--ink);
+      }
       main {
         width: var(--wrap);
         margin-inline: auto;
         padding-block: clamp(3rem, 6vw, 6rem);
       }
-      article { max-width: 66ch; }
+      article {
+        max-width: 66ch;
+      }
       .page-label {
         font-size: clamp(0.72rem, 1vw, 0.82rem);
         letter-spacing: 0.14em;
@@ -80,7 +132,11 @@
         color: var(--ink);
         margin-bottom: 0.5rem;
       }
-      .last-updated { font-size: clamp(0.72rem, 1vw, 0.82rem); color: var(--muted); margin-bottom: 3rem; }
+      .last-updated {
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        color: var(--muted);
+        margin-bottom: 3rem;
+      }
       h2 {
         font-family: var(--font-d);
         font-size: clamp(1.1rem, 2vw, 1.5rem);
@@ -91,9 +147,18 @@
         padding-top: 1.25rem;
         border-top: 1px solid var(--border);
       }
-      p { margin-top: 1rem; color: var(--ink-2); }
-      ul { margin-top: 1rem; padding-left: 1.5rem; color: var(--ink-2); }
-      li { margin-top: 0.4rem; }
+      p {
+        margin-top: 1rem;
+        color: var(--ink-2);
+      }
+      ul {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+        color: var(--ink-2);
+      }
+      li {
+        margin-top: 0.4rem;
+      }
       footer {
         border-top: 1px solid var(--border);
         padding: 2rem 0;
@@ -101,15 +166,25 @@
         margin-inline: auto;
         margin-top: clamp(3rem, 6vw, 5rem);
       }
-      .footer__copy { font-size: clamp(0.72rem, 1vw, 0.82rem); color: var(--muted); }
+      .footer__copy {
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        color: var(--muted);
+      }
       @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after { transition-duration: 0.01ms !important; }
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   </head>
   <body>
     <header>
-      <nav aria-label="Site navigation" style="display:flex;align-items:center;padding-top:1.5rem;">
+      <nav
+        aria-label="Site navigation"
+        style="display: flex; align-items: center; padding-top: 1.5rem"
+      >
         <div class="nav-mini">
           <a href="/">Aloha<span> Escapes</span></a>
         </div>
@@ -124,25 +199,24 @@
 
         <h2>What we collect</h2>
         <p>
-          When you submit our contact form, we collect your email address. Our hosting
-          provider (GitHub Pages) collects standard server access logs — IP address,
-          browser user-agent, and referring URL — as part of normal operations. We do
-          not place cookies or tracking pixels on this site.
+          When you submit our contact form, we collect your email address. Our hosting provider
+          (GitHub Pages) collects standard server access logs — IP address, browser user-agent, and
+          referring URL — as part of normal operations. We do not place cookies or tracking pixels
+          on this site.
         </p>
 
         <h2>How we use it</h2>
         <p>
-          Your email address is used solely to respond to your trip planning enquiry.
-          We will not add you to a marketing list, sell your address, or contact you
-          for any purpose unrelated to your enquiry without your explicit consent.
+          Your email address is used solely to respond to your trip planning enquiry. We will not
+          add you to a marketing list, sell your address, or contact you for any purpose unrelated
+          to your enquiry without your explicit consent.
         </p>
 
         <h2>Third-party services</h2>
         <ul>
           <li>
-            <strong>Google Fonts</strong> — fonts are loaded from
-            <code>fonts.googleapis.com</code>. Google may log the request; we do not
-            place cookies through this service.
+            <strong>Google Fonts</strong> — fonts are loaded from <code>fonts.googleapis.com</code>.
+            Google may log the request; we do not place cookies through this service.
           </li>
           <li>
             <strong>Plausible Analytics</strong> — we use Plausible for cookieless,
@@ -150,31 +224,32 @@
             <a href="https://plausible.io/privacy" rel="noopener">plausible.io/privacy</a>.
           </li>
           <li>
-            <strong>Formspree</strong> — form submissions are processed by Formspree.
-            See their privacy policy at
-            <a href="https://formspree.io/legal/privacy-policy" rel="noopener">formspree.io/legal/privacy-policy</a>.
+            <strong>Formspree</strong> — form submissions are processed by Formspree. See their
+            privacy policy at
+            <a href="https://formspree.io/legal/privacy-policy" rel="noopener"
+              >formspree.io/legal/privacy-policy</a
+            >.
           </li>
           <li>
             <strong>Internet Archive</strong> — ambient audio is streamed from
-            <code>archive.org</code>. The Internet Archive may log your IP as part of
-            its CDN delivery.
+            <code>archive.org</code>. The Internet Archive may log your IP as part of its CDN
+            delivery.
           </li>
         </ul>
 
         <h2>Your rights</h2>
         <p>
-          Under GDPR and CCPA, you have the right to access, correct, delete, or
-          port any personal data we hold about you, and to object to its processing.
-          We do not sell personal data. To exercise any right, contact us at
-          <a href="mailto:hello@aloha-escapes.com">hello@aloha-escapes.com</a>.
-          We will respond within 30 days.
+          Under GDPR and CCPA, you have the right to access, correct, delete, or port any personal
+          data we hold about you, and to object to its processing. We do not sell personal data. To
+          exercise any right, contact us at
+          <a href="mailto:hello@aloha-escapes.com">hello@aloha-escapes.com</a>. We will respond
+          within 30 days.
         </p>
 
         <h2>Data retention</h2>
         <p>
-          Enquiry emails are retained for two years and then deleted. Analytics data
-          contains no personally identifiable information and is retained indefinitely
-          in aggregate form.
+          Enquiry emails are retained for two years and then deleted. Analytics data contains no
+          personally identifiable information and is retained indefinitely in aggregate form.
         </p>
 
         <h2>Contact</h2>

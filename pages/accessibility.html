@@ -4,12 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accessibility Statement — Aloha Escapes</title>
-    <meta name="description" content="Aloha Escapes commitment to web accessibility and WCAG 2.1 AA conformance." />
+    <meta
+      name="description"
+      content="Aloha Escapes commitment to web accessibility and WCAG 2.1 AA conformance."
+    />
     <link rel="canonical" href="https://aloha-escapes.com/pages/accessibility.html" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Security · X-Content-Type-Options, X-Frame-Options, Permissions-Policy and
+         CSP's frame-ancestors only take effect as HTTP response headers, which a
+         static host cannot set from markup. GitHub Pages already sends
+         `X-Content-Type-Options: nosniff`; see README "Security headers" for the
+         rest. Framing is blocked by the guard below in the meantime. -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none';"
+    />
+    <script>
+      /* Clickjacking guard — stands in for the frame-ancestors / X-Frame-Options
+         headers this host cannot send. Refuse to render inside any frame. */
+      if (window.self !== window.top) {
+        document.documentElement.style.display = "none";
+        try {
+          window.top.location = window.self.location.href;
+        } catch {
+          /* Top-level navigation blocked by the framing page — stay hidden. */
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloock&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --bg: oklch(0.09 0.015 225);
@@ -17,41 +46,159 @@
         --primary: oklch(0.63 0.17 18);
         --ink: oklch(0.94 0.008 72);
         --ink-2: oklch(0.76 0.01 72);
-        --muted: oklch(0.60 0.012 225);
-        --border: oklch(0.20 0.018 225);
+        --muted: oklch(0.6 0.012 225);
+        --border: oklch(0.2 0.018 225);
         --font-d: "Gloock", Georgia, serif;
         --font-b: "Jost", system-ui, sans-serif;
         --wrap: min(780px, 100% - 3rem);
       }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body { font-family: var(--font-b); background: var(--bg); color: var(--ink); font-size: clamp(1rem, 1.4vw, 1.1rem); font-weight: 300; line-height: 1.72; }
-      a { color: var(--primary); text-decoration: underline; }
-      a:hover { color: oklch(0.78 0.115 70); }
-      .nav-mini { padding: 1.5rem 0; width: var(--wrap); margin-inline: auto; }
-      .nav-mini a { font-family: var(--font-d); font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
-      .nav-mini span { color: var(--primary); }
-      .nav-back { font-family: var(--font-b); font-size: clamp(0.72rem, 1vw, 0.82rem); letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; margin-left: 1.5rem; }
-      .nav-back:hover { color: var(--ink); }
-      main { width: var(--wrap); margin-inline: auto; padding-block: clamp(3rem, 6vw, 6rem); }
-      article { max-width: 66ch; }
-      .page-label { font-size: clamp(0.72rem, 1vw, 0.82rem); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-      h1 { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 0.5rem; }
-      .last-updated { font-size: clamp(0.72rem, 1vw, 0.82rem); color: var(--muted); margin-bottom: 3rem; }
-      h2 { font-family: var(--font-d); font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; color: var(--ink); letter-spacing: -0.02em; margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
-      p { margin-top: 1rem; color: var(--ink-2); }
-      ul { margin-top: 1rem; padding-left: 1.5rem; color: var(--ink-2); }
-      li { margin-top: 0.4rem; }
-      .status-badge { display: inline-block; margin-top: 1rem; padding: 0.3rem 0.85rem; background: oklch(0.22 0.07 145 / 0.2); border: 1px solid oklch(0.55 0.14 145); border-radius: 3px; color: oklch(0.82 0.10 145); font-size: clamp(0.72rem, 1vw, 0.82rem); letter-spacing: 0.08em; text-transform: uppercase; }
-      footer { border-top: 1px solid var(--border); padding: 2rem 0; width: var(--wrap); margin-inline: auto; margin-top: clamp(3rem, 6vw, 5rem); }
-      .footer__copy { font-size: clamp(0.72rem, 1vw, 0.82rem); color: var(--muted); }
-      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-b);
+        background: var(--bg);
+        color: var(--ink);
+        font-size: clamp(1rem, 1.4vw, 1.1rem);
+        font-weight: 300;
+        line-height: 1.72;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+      a:hover {
+        color: oklch(0.78 0.115 70);
+      }
+      .nav-mini {
+        padding: 1.5rem 0;
+        width: var(--wrap);
+        margin-inline: auto;
+      }
+      .nav-mini a {
+        font-family: var(--font-d);
+        font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+        color: var(--ink);
+        text-decoration: none;
+        letter-spacing: 0.01em;
+      }
+      .nav-mini span {
+        color: var(--primary);
+      }
+      .nav-back {
+        font-family: var(--font-b);
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-left: 1.5rem;
+      }
+      .nav-back:hover {
+        color: var(--ink);
+      }
+      main {
+        width: var(--wrap);
+        margin-inline: auto;
+        padding-block: clamp(3rem, 6vw, 6rem);
+      }
+      article {
+        max-width: 66ch;
+      }
+      .page-label {
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-family: var(--font-d);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+      .last-updated {
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        color: var(--muted);
+        margin-bottom: 3rem;
+      }
+      h2 {
+        font-family: var(--font-d);
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        font-weight: 400;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+        margin-top: 2.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+      }
+      p {
+        margin-top: 1rem;
+        color: var(--ink-2);
+      }
+      ul {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+        color: var(--ink-2);
+      }
+      li {
+        margin-top: 0.4rem;
+      }
+      .status-badge {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.3rem 0.85rem;
+        background: oklch(0.22 0.07 145 / 0.2);
+        border: 1px solid oklch(0.55 0.14 145);
+        border-radius: 3px;
+        color: oklch(0.82 0.1 145);
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 0;
+        width: var(--wrap);
+        margin-inline: auto;
+        margin-top: clamp(3rem, 6vw, 5rem);
+      }
+      .footer__copy {
+        font-size: clamp(0.72rem, 1vw, 0.82rem);
+        color: var(--muted);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
-      <nav aria-label="Site navigation" style="display:flex;align-items:center;padding-top:1.5rem;">
-        <div class="nav-mini"><a href="/">Aloha<span> Escapes</span></a></div>
+      <nav
+        aria-label="Site navigation"
+        style="display: flex; align-items: center; padding-top: 1.5rem"
+      >
+        <div class="nav-mini">
+          <a href="/">Aloha<span> Escapes</span></a>
+        </div>
         <a href="/" class="nav-back">← Back</a>
       </nav>
     </header>
@@ -63,20 +210,25 @@
 
         <h2>Our commitment</h2>
         <p>
-          Aloha Escapes is committed to making this website accessible to all users,
-          including those with disabilities. We target conformance with the Web
-          Content Accessibility Guidelines (WCAG) 2.1 at Level AA.
+          Aloha Escapes is committed to making this website accessible to all users, including those
+          with disabilities. We target conformance with the Web Content Accessibility Guidelines
+          (WCAG) 2.1 at Level AA.
         </p>
         <span class="status-badge">WCAG 2.1 AA — Actively maintained</span>
 
         <h2>Technical approach</h2>
         <ul>
-          <li>Semantic HTML5 landmarks (<code>nav</code>, <code>main</code>, <code>footer</code>, <code>article</code>)</li>
+          <li>
+            Semantic HTML5 landmarks (<code>nav</code>, <code>main</code>, <code>footer</code>,
+            <code>article</code>)
+          </li>
           <li>ARIA labels on all interactive elements and regions</li>
           <li>Color contrast ≥ 4.5:1 for body text, ≥ 3:1 for large text</li>
           <li>Visible keyboard focus indicators throughout</li>
           <li>Full keyboard navigation including focus-trapped mobile menu with Escape support</li>
-          <li><code>prefers-reduced-motion</code> respected — all animations and transitions disabled</li>
+          <li>
+            <code>prefers-reduced-motion</code> respected — all animations and transitions disabled
+          </li>
           <li>Descriptive alt text on every image, naming the specific place and scene</li>
           <li>Live region (<code>aria-live</code>) for form submission status announcements</li>
           <li>Ambient audio player is opt-in and keyboard-operable; never auto-plays</li>
@@ -84,10 +236,9 @@
 
         <h2>Testing</h2>
         <p>
-          Automated accessibility tests (axe-core, WCAG 2.1 AA rule set) run on
-          every code change via GitHub Actions across Desktop Chrome and Mobile Safari.
-          Manual testing is performed with VoiceOver on Safari/macOS and keyboard-only
-          navigation in Chrome.
+          Automated accessibility tests (axe-core, WCAG 2.1 AA rule set) run on every code change
+          via GitHub Actions across Desktop Chrome and Mobile Safari. Manual testing is performed
+          with VoiceOver on Safari/macOS and keyboard-only navigation in Chrome.
         </p>
 
         <h2>Known issues</h2>
@@ -95,9 +246,9 @@
 
         <h2>Feedback</h2>
         <p>
-          If you encounter an accessibility barrier on this site, please contact us
-          with "Accessibility" in the subject line. We aim to respond within two
-          business days and resolve confirmed issues within ten business days.
+          If you encounter an accessibility barrier on this site, please contact us with
+          "Accessibility" in the subject line. We aim to respond within two business days and
+          resolve confirmed issues within ten business days.
         </p>
         <p>
           <a href="mailto:hello@aloha-escapes.com">hello@aloha-escapes.com</a> ·

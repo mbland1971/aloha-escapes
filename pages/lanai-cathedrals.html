@@ -35,12 +35,28 @@
     <meta name="theme-color" content="#0f1b22" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <!-- Security · X-Content-Type-Options, X-Frame-Options, Permissions-Policy and
+         CSP's frame-ancestors only take effect as HTTP response headers, which a
+         static host cannot set from markup. GitHub Pages already sends
+         `X-Content-Type-Options: nosniff`; see README "Security headers" for the
+         rest. Framing is blocked by the guard below in the meantime. -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; media-src https://archive.org https://*.archive.org; connect-src 'self' https://formspree.io https://plausible.io; form-action https://formspree.io 'self'; base-uri 'self'; object-src 'none';"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; media-src https://archive.org https://*.archive.org; connect-src 'self' https://formspree.io https://plausible.io; form-action https://formspree.io 'self'; base-uri 'self'; object-src 'none'; frame-src 'none';"
     />
+    <script>
+      /* Clickjacking guard — stands in for the frame-ancestors / X-Frame-Options
+         headers this host cannot send. Refuse to render inside any frame. */
+      if (window.self !== window.top) {
+        document.documentElement.style.display = "none";
+        try {
+          window.top.location = window.self.location.href;
+        } catch {
+          /* Top-level navigation blocked by the framing page — stay hidden. */
+        }
+      }
+    </script>
 
     <script type="application/ld+json">
       {
@@ -117,7 +133,9 @@
         animation-timing-function: var(--ease-expo);
       }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -163,7 +181,10 @@
         border-radius: 2px;
       }
 
-      h1, h2, h3, h4 {
+      h1,
+      h2,
+      h3,
+      h4 {
         font-family: var(--font-d);
         font-weight: 400;
         line-height: 1.08;
@@ -187,7 +208,10 @@
         right: 0;
         z-index: var(--z-sticky);
         padding: 1.5rem 0;
-        transition: background 0.4s var(--ease-expo), padding 0.4s var(--ease-expo), backdrop-filter 0.4s;
+        transition:
+          background 0.4s var(--ease-expo),
+          padding 0.4s var(--ease-expo),
+          backdrop-filter 0.4s;
       }
 
       .nav::before {
@@ -264,7 +288,10 @@
         font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        transition: transform 0.22s var(--ease-expo), background 0.22s, box-shadow 0.22s;
+        transition:
+          transform 0.22s var(--ease-expo),
+          background 0.22s,
+          box-shadow 0.22s;
       }
 
       .nav__cta:hover {
@@ -305,7 +332,12 @@
       .hero__veil {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, oklch(0.09 0.015 225 / 0.98) 0%, oklch(0.09 0.015 225 / 0.5) 40%, oklch(0.09 0.015 225 / 0.05) 100%);
+        background: linear-gradient(
+          to top,
+          oklch(0.09 0.015 225 / 0.98) 0%,
+          oklch(0.09 0.015 225 / 0.5) 40%,
+          oklch(0.09 0.015 225 / 0.05) 100%
+        );
       }
 
       .hero__content {
@@ -552,9 +584,7 @@
             <li><a href="/#how">How It Works</a></li>
             <li><a href="/#stories">Stories</a></li>
           </ul>
-          <a href="/pages/diving.html" class="nav__cta">
-            Back to Diving
-          </a>
+          <a href="/pages/diving.html" class="nav__cta"> Back to Diving </a>
         </div>
       </nav>
     </header>
@@ -591,9 +621,9 @@
           <div class="details__copy">
             <div class="content-block">
               <p>
-                The Cathedrals are best described as cavern diving rather than reef diving.
-                Guides lead the group through arches and into clear chambers, with the surface
-                interval often punctuated by spinner dolphins passing nearby.
+                The Cathedrals are best described as cavern diving rather than reef diving. Guides
+                lead the group through arches and into clear chambers, with the surface interval
+                often punctuated by spinner dolphins passing nearby.
               </p>
             </div>
 
@@ -601,9 +631,13 @@
               <h3>What you will see</h3>
               <div class="feature-list">
                 <div class="feature-list__item">Amber light shafts through lava tube openings.</div>
-                <div class="feature-list__item">Coral encrusted walls, soft coral shelves, and sponges.</div>
+                <div class="feature-list__item">
+                  Coral encrusted walls, soft coral shelves, and sponges.
+                </div>
                 <div class="feature-list__item">Cathedral-like arches and wide open chambers.</div>
-                <div class="feature-list__item">Spinner dolphins on the return surface interval.</div>
+                <div class="feature-list__item">
+                  Spinner dolphins on the return surface interval.
+                </div>
               </div>
             </div>
 
@@ -611,8 +645,8 @@
               <h3>Why this charter</h3>
               <p>
                 This dive is a careful blend of scenery and skill. The guide keeps the group
-                together, timing the descent for light and choosing the calmest entrance through
-                the lava tube mouths.
+                together, timing the descent for light and choosing the calmest entrance through the
+                lava tube mouths.
               </p>
             </div>
           </div>
@@ -641,7 +675,7 @@
           </aside>
         </div>
 
-        <div class="image-panel" style="margin-top: 2rem;">
+        <div class="image-panel" style="margin-top: 2rem">
           <img
             src="https://d8j0ntlcm91z4.cloudfront.net/user_3Eh4RU5llS5ZTEvg40eiOF3DyWN/hf_20260609_030329_4b183420-11a2-4a88-9924-c0b994d9051f.png"
             alt="Cathedrals, Lanai — shafts of amber light penetrate lava tube chambers at 60 feet depth, illuminating glassy water and coral-encrusted walls"
@@ -655,10 +689,14 @@
     </main>
 
     <script>
-      const nav = document.getElementById('nav');
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 20);
-      }, { passive: true });
+      const nav = document.getElementById("nav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 20);
+        },
+        { passive: true }
+      );
     </script>
   </body>
 </html>

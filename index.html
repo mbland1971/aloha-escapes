@@ -36,13 +36,28 @@
     <meta name="theme-color" content="#0f1b22" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    <!-- Security -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <!-- Security · X-Content-Type-Options, X-Frame-Options, Permissions-Policy and
+         CSP's frame-ancestors only take effect as HTTP response headers, which a
+         static host cannot set from markup. GitHub Pages already sends
+         `X-Content-Type-Options: nosniff`; see README "Security headers" for the
+         rest. Framing is blocked by the guard below in the meantime. -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; media-src https://archive.org https://*.archive.org; connect-src 'self' https://formspree.io https://plausible.io; form-action https://formspree.io 'self'; base-uri 'self'; object-src 'none';"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; media-src https://archive.org https://*.archive.org; connect-src 'self' https://formspree.io https://plausible.io; form-action https://formspree.io 'self'; base-uri 'self'; object-src 'none'; frame-src 'none';"
     />
+    <script>
+      /* Clickjacking guard — stands in for the frame-ancestors / X-Frame-Options
+         headers this host cannot send. Refuse to render inside any frame. */
+      if (window.self !== window.top) {
+        document.documentElement.style.display = "none";
+        try {
+          window.top.location = window.self.location.href;
+        } catch {
+          /* Top-level navigation blocked by the framing page — stay hidden. */
+        }
+      }
+    </script>
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -2655,9 +2670,22 @@
         const statusEl = document.getElementById("form-status");
         const submitBtn = document.getElementById("enquiry-submit");
         if (!form || !statusEl) return;
+        // Status messages are built as DOM nodes rather than assigned through
+        // innerHTML, so this stays an inert sink no matter what the copy becomes.
+        function setStatus(variant, text, link) {
+          statusEl.replaceChildren(document.createTextNode(text));
+          if (link) {
+            const a = document.createElement("a");
+            a.href = link.href;
+            a.textContent = link.label;
+            statusEl.append(a, document.createTextNode("."));
+          }
+          statusEl.className = "cta-band__status cta-band__status--" + variant;
+        }
+
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const savedLabel = submitBtn.innerHTML;
+          const savedChildren = [...submitBtn.childNodes];
           submitBtn.disabled = true;
           submitBtn.textContent = "Sending…";
           statusEl.hidden = true;
@@ -2668,20 +2696,19 @@
               headers: { Accept: "application/json" },
               body: new FormData(form),
             });
-            if (res.ok) {
-              form.reset();
-              statusEl.innerHTML =
-                "We received your enquiry — expect a reply within one business day.";
-              statusEl.className = "cta-band__status cta-band__status--success";
-            } else {
-              throw new Error();
-            }
+            if (!res.ok) throw new Error("Formspree responded " + res.status);
+            form.reset();
+            setStatus(
+              "success",
+              "We received your enquiry — expect a reply within one business day."
+            );
           } catch {
-            statusEl.innerHTML =
-              'Something went wrong. Email us directly at <a href="mailto:hello@aloha-escapes.com">hello@aloha-escapes.com</a>.';
-            statusEl.className = "cta-band__status cta-band__status--error";
+            setStatus("error", "Something went wrong. Email us directly at ", {
+              href: "mailto:hello@aloha-escapes.com",
+              label: "hello@aloha-escapes.com",
+            });
             submitBtn.disabled = false;
-            submitBtn.innerHTML = savedLabel;
+            submitBtn.replaceChildren(...savedChildren);
           }
           statusEl.hidden = false;
         });

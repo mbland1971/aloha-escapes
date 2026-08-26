@@ -1,4 +1,3 @@
-
 # Aloha Escapes
 
 Aloha Escapes is a boutique luxury Hawaiian travel agency website. This repo is a static site built from a main landing page in `index.html` with supplemental detail pages under `pages/`.
@@ -13,7 +12,9 @@ Aloha Escapes is a boutique luxury Hawaiian travel agency website. This repo is 
 ## Repo structure
 
 - `index.html` — main website file containing HTML, CSS, and JavaScript.
-- `pages/accessibility.html`, `pages/diving.html`, `pages/privacy.html`, `pages/terms.html` — auxiliary static pages.
+- `pages/*.html` — auxiliary static pages (destinations, privacy, terms, accessibility).
+- `404.html`, `favicon.svg`, `robots.txt`, `sitemap.xml` — the rest of the deployed site.
+  The Pages workflow publishes only these files; everything else in the repo stays private.
 - `PLAYWRIGHT` tests in `tests/`:
   - `accessibility.spec.js`
   - `navigation.spec.js`
@@ -79,3 +80,34 @@ npm run test:ui
 ## Notes
 
 This project is intended as a polished marketing landing page rather than a multi-page application. Keep interactions light, navigation simple, and visuals spacious.
+
+## Security headers
+
+Each page ships a Content-Security-Policy, a `referrer` policy, and a small
+clickjacking guard in `<head>`. Four protections cannot be delivered from
+markup — browsers honour them only as HTTP response headers — so they are the
+host's job. GitHub Pages sends `X-Content-Type-Options: nosniff` and HSTS on
+`*.github.io` but nothing else, and it cannot be configured. If the site moves
+behind a host that supports custom headers (Netlify `_headers`, Cloudflare,
+CloudFront), add:
+
+```text
+Content-Security-Policy: frame-ancestors 'none'
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+Two known, accepted gaps:
+
+- `script-src` keeps `'unsafe-inline'` because every page's JS is inline and the
+  site has no build step to maintain per-script hashes. Nothing on the site
+  renders user- or URL-supplied content, so there is no injection source to pair
+  it with — but this is the policy's weakest point, and moving the JS to hashed
+  or external files would close it.
+- `upgrade-insecure-requests` is deliberately absent. No page references an
+  `http://` URL, and WebKit breaks same-page fragment navigation under that
+  directive when the page itself is served over plain http (local dev and CI).
+
+Report vulnerabilities per `.github/SECURITY.md` — do not open a public issue.
